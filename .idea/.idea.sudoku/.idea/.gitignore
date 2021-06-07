@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/projectSettingsUpdater.xml
+/modules.xml
+/.idea.sudoku.iml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Users\Niels\source\repos\sudoku\.idea\.idea.sudoku\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
