@@ -6,7 +6,7 @@
 
         public override void BuildSudoku()
         {
-            sudokuParser.ParseSudoku(Content);
+            sudokuParser.ParseSudoku(Content, RowLength);
         }
     }
 }
