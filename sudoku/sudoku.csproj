@@ -111,5 +111,20 @@
     <ItemGroup>
         <None Include="App.config" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="Resources\SudokuFiles\puzzle.4x4" />
+      <Content Include="Resources\SudokuFiles\puzzle.6x6" />
+      <Content Include="Resources\SudokuFiles\puzzle.9x9" />
+      <Content Include="Resources\SudokuFiles\puzzle.jigsaw" />
+      <Content Include="Resources\SudokuFiles\puzzle.samurai" />
+      <Content Include="Resources\SudokuFiles\puzzle2.4x4" />
+      <Content Include="Resources\SudokuFiles\puzzle2.9x9.txt" />
+      <Content Include="Resources\SudokuFiles\puzzle2.jigsaw.txt" />
+      <Content Include="Resources\SudokuFiles\puzzle2.samurai.txt" />
+      <Content Include="Resources\SudokuFiles\puzzle3.4x4" />
+      <Content Include="Resources\SudokuFiles\puzzle3.9x9.txt" />
+      <Content Include="Resources\SudokuFiles\puzzle3.jigsaw.txt" />
+      <Content Include="Resources\SudokuFiles\puzzle3.samurai.txt" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
