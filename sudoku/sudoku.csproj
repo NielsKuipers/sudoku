@@ -78,6 +78,8 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Include="Board\Board.cs" />
+        <Compile Include="Board\IRegion.cs" />
         <Compile Include="Builder\BuilderType\JigsawBuilder.cs" />
         <Compile Include="Builder\BuilderType\SamuraiBuilder.cs" />
         <Compile Include="Builder\BuilderType\_4x4Builder.cs" />
@@ -89,6 +91,7 @@
         <Compile Include="Builder\SudokuParser.cs" />
         <Compile Include="Builder\SudokuReader.cs" />
         <Compile Include="Builder\SudokuType.cs" />
+        <Compile Include="Exceptions\InvalidSudokuFileException.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>

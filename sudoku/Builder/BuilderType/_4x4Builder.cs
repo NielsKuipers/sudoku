@@ -2,6 +2,11 @@
 {
     public class _4x4Builder : SudokuBuilder
     {
-        
+        public override int RowLength => 4;
+
+        public override void BuildSudoku()
+        {
+            sudokuParser.ParseSudoku(Content);
+        }
     }
 }

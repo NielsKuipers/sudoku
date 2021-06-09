@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using sudoku.Builder.BuilderType;
 
 namespace sudoku.Builder
@@ -17,6 +18,11 @@ namespace sudoku.Builder
                 {SudokuType.Samurai, new SamuraiBuilder()},
                 {SudokuType.Jigsaw, new JigsawBuilder()}
             };
+        }
+
+        public ISudokuBuilder getBuilder(SudokuType ext)
+        {
+            return builders[ext];
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class SudokuParser
     {
-        public void ParseSudoku()
+        public void ParseSudoku(string[] content)
         {
             
         }

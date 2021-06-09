@@ -10,16 +10,22 @@ namespace sudoku
     /// </summary>
     public partial class MainWindow
     {
-        private SudokuReader reader;
+        private (string[] content, SudokuType type) _rawSudoku; 
+        private SudokuBuilderFactory _factory;
+        private ISudokuBuilder _builder;
+
         public MainWindow()
         {
-            reader = new SudokuReader();
             InitializeComponent();
         }
 
         private void readfile_Click(object sender, RoutedEventArgs e)
         {
-            reader.ReadFile();
+            _rawSudoku = SudokuReader.ReadFile();
+            _builder = _factory.getBuilder(_rawSudoku.type);
+            _builder.SetContent(_rawSudoku.content);
+            
+            _builder.BuildSudoku();
         }
     }
 }
