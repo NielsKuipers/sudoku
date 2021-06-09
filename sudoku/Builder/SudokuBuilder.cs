@@ -5,7 +5,7 @@ namespace sudoku.Builder
 {
     public abstract class SudokuBuilder : ISudokuBuilder
     {
-        protected static readonly SudokuParser sudokuParser = new SudokuParser();
+        protected static readonly SudokuParser SudokuParser = new SudokuParser();
         protected string[] Content { get; private set; }
         public abstract int RowLength { get; }
         

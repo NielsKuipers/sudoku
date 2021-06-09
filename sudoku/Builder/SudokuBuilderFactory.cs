@@ -6,11 +6,11 @@ namespace sudoku.Builder
 {
     public class SudokuBuilderFactory
     {
-        private Dictionary<SudokuType, ISudokuBuilder> builders;
+        private readonly Dictionary<SudokuType, ISudokuBuilder> _builders;
 
         public SudokuBuilderFactory()
         {
-            builders = new Dictionary<SudokuType, ISudokuBuilder>
+            _builders = new Dictionary<SudokuType, ISudokuBuilder>
             {
                 {SudokuType._4x4, new _4x4Builder()},
                 {SudokuType._6x6, new _6x6Builder()},
@@ -20,9 +20,9 @@ namespace sudoku.Builder
             };
         }
 
-        public ISudokuBuilder getBuilder(SudokuType ext)
+        public ISudokuBuilder GetBuilder(SudokuType ext)
         {
-            return builders[ext];
+            return _builders[ext];
         }
     }
 }

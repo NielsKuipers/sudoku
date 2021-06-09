@@ -6,7 +6,7 @@ using sudoku.Exceptions;
 
 namespace sudoku.Builder
 {
-    public class SudokuReader
+    public static class SudokuReader
     {
         public static (string[] content, SudokuType parsedExt) ReadFile()
         {
@@ -22,6 +22,8 @@ namespace sudoku.Builder
                 Filter = filter
             };
 
+            if (openFileDialog.ShowDialog() != true) throw new Exception();
+            
             var path = openFileDialog.FileName;
             var extenstion = Path.GetExtension(path).Remove(0, 1);
 
