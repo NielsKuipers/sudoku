@@ -6,52 +6,55 @@ namespace sudoku.Builder
 {
     public class SudokuParser
     {
-        public void ParseSudoku(IEnumerable<string> content, int rowLength, int colLength, int blockSize)
+        public static Dictionary<string, List<List<int>>> ParseGenericSudoku(string content, int size, int blockRowLength, int blocksPerRow)
         {
             var boardData = new Dictionary<string, List<List<int>>>();
-            foreach (var line in content)
+            var rows = new List<List<int>>();
+            for (var i = 0; i < size; i++)
             {
-                var rows = new List<List<int>>();
-                var row = new List<int>();
-                
-                var cols = new List<List<int>>();
-                for (var i = 0; i < colLength; i++)
-                {
-                    cols.Add(new List<int>());
-                }
-
-                var colPointer = 0;
-                
-                var block = new List<List<int>>();
-
-                foreach (var value in line.Select(c => int.Parse(c.ToString())))
-                {
-                    // rows
-                    row.Add(value);
-                    if (row.Count == rowLength)
-                    {
-                        rows.Add(new List<int>(row));
-                        row.Clear();
-                    }
-                    
-                    // cols
-                    cols[colPointer].Add(value);
-                    colPointer++;
-                    if (colPointer == colLength) colPointer = 0;
-                    
-                    // blocks
-                    
-                }
-
-                foreach (var t in cols)
-                {
-                    System.Diagnostics.Debug.WriteLine("NEW COL");
-                    foreach (var i in t)
-                    {
-                        System.Diagnostics.Debug.WriteLine(i);
-                    }
-                }
+                rows.Add(new List<int>());
             }
+
+            var cols = new List<List<int>>();
+            for (var i = 0; i < size; i++)
+            {
+                cols.Add(new List<int>());
+            }
+
+            var blocks = new List<List<int>>();
+            for (var i = 0; i < size; i++)
+            {
+                blocks.Add(new List<int>());
+            }
+
+            var rowPointer = 0;
+            var colPointer = 0;
+            var blockPointer = 0;
+            
+            foreach (var value in content.Select(c => int.Parse(c.ToString())))
+            {
+                // blocks and rows
+                blocks[blockPointer].Add(value);
+                rows[rowPointer].Add(value);
+                if (rows[rowPointer].Count == size)
+                {
+                    rowPointer++;
+                    if (blocks[blockPointer].Count != size) blockPointer -= blocksPerRow - 1;
+                    else blockPointer++;
+                }
+                else if (blocks[blockPointer].Count % blockRowLength == 0) blockPointer++;
+
+
+                // cols
+                cols[colPointer].Add(value);
+                colPointer++;
+                if (colPointer == size) colPointer = 0;
+            }
+
+            boardData.Add("rows", rows);
+            boardData.Add("cols", cols);
+            boardData.Add("blocks", blocks);
+            return boardData;
         }
     }
 }

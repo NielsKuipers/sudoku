@@ -2,7 +2,9 @@
 {
     public class SamuraiBuilder : SudokuBuilder
     {
-        public override int RowLength => 9;
+        public override int Size => 9;
+        protected override int BlockRowLength => 3;
+        protected override int BlocksPerRow => 3;
 
         public override void BuildSudoku()
         {

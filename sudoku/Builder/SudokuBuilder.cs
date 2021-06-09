@@ -7,7 +7,9 @@ namespace sudoku.Builder
     {
         protected static readonly SudokuParser SudokuParser = new SudokuParser();
         protected string[] Content { get; private set; }
-        public abstract int RowLength { get; }
+        public abstract int Size { get; }
+        protected abstract int BlockRowLength { get; }
+        protected abstract int BlocksPerRow { get; }
         
         public abstract void BuildSudoku();
 
