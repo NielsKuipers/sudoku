@@ -2,13 +2,14 @@
 {
     public class _4x4Builder : SudokuBuilder
     {
-        public override int Size => 4;
-        protected override int BlockRowLength => 2;
-        protected override int BlocksPerRow => 2;
+        public override int RegionSize => 4;
+        public override int BlockRowSize => 2;
+        public override int BlocksPerRow => BlockRowSize;
+        public override int BlocksAmount => 4;
 
         public override void BuildSudoku()
         {
-            var rawBoard = SudokuParser.ParseGenericSudoku(Content[0], Size, 2, 2);
+            BuildGenericSudoku();
         }
     }
 }

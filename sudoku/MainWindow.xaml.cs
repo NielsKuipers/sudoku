@@ -25,8 +25,8 @@ namespace sudoku
             _rawSudoku = SudokuReader.ReadFile();
             _builder = _factory.GetBuilder(_rawSudoku.type);
             _builder.SetContent(_rawSudoku.content);
-            
             _builder.BuildSudoku();
+            _builder.GetResult();
         }
     }
 }

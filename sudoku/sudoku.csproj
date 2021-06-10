@@ -78,10 +78,10 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="Board\Board.cs" />
-        <Compile Include="Board\Cell.cs" />
-        <Compile Include="Board\IRegion.cs" />
-        <Compile Include="Board\RegionComposite.cs" />
+        <Compile Include="SudokuBoard\Board.cs" />
+        <Compile Include="SudokuBoard\Cell.cs" />
+        <Compile Include="SudokuBoard\Region.cs" />
+        <Compile Include="SudokuBoard\RegionComposite.cs" />
         <Compile Include="Builder\BuilderType\JigsawBuilder.cs" />
         <Compile Include="Builder\BuilderType\SamuraiBuilder.cs" />
         <Compile Include="Builder\BuilderType\_4x4Builder.cs" />
@@ -117,6 +117,7 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="RemovedCode.txt" />
       <Content Include="Resources\SudokuFiles\puzzle.4x4" />
       <Content Include="Resources\SudokuFiles\puzzle.6x6" />
       <Content Include="Resources\SudokuFiles\puzzle.9x9" />

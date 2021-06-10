@@ -1,10 +1,13 @@
-﻿namespace sudoku.Builder.BuilderType
+﻿using sudoku.SudokuBoard;
+
+namespace sudoku.Builder.BuilderType
 {
     public class SamuraiBuilder : SudokuBuilder
     {
-        public override int Size => 9;
-        protected override int BlockRowLength => 3;
-        protected override int BlocksPerRow => 3;
+        public override int RegionSize => 9;
+        public override int BlockRowSize => 3;
+        public override int BlocksPerRow => BlockRowSize;
+        public override int BlocksAmount => 9;
 
         public override void BuildSudoku()
         {
