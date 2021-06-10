@@ -2,6 +2,6 @@
 {
     public interface IRegion
     {
-        void isValid();
+        bool IsValid();
     }
 }

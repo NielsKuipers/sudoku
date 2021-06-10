@@ -78,10 +78,13 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Include="Board\BlockComposite.cs" />
         <Compile Include="Board\Board.cs" />
         <Compile Include="Board\Cell.cs" />
+        <Compile Include="Board\ColumnComposite.cs" />
         <Compile Include="Board\IRegion.cs" />
         <Compile Include="Board\RegionComposite.cs" />
+        <Compile Include="Board\RowComposite.cs" />
         <Compile Include="Builder\BuilderType\JigsawBuilder.cs" />
         <Compile Include="Builder\BuilderType\SamuraiBuilder.cs" />
         <Compile Include="Builder\BuilderType\_4x4Builder.cs" />

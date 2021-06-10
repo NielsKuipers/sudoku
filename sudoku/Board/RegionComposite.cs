@@ -1,14 +1,29 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace sudoku.Board
 {
     public abstract class RegionComposite : IRegion
     {
-        private List<IRegion> children = new List<IRegion>();
-        
-        public void isValid()
+        private List<IRegion> _children = new List<IRegion>();
+
+        protected RegionComposite(params IRegion[] children)
         {
-            throw new System.NotImplementedException();
+            foreach (var child in children)
+            {
+                _children.Add(child);
+            }
+        }
+        
+        public bool IsValid()
+        {
+            
+        }
+
+        public IEnumerable<int> GetValues()
+        {
+            return _children.Select(child => child.IsValid()).ToList();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace sudoku.Board
+﻿using System.Diagnostics;
+
+namespace sudoku.Board
 {
     public class Cell : IRegion
     {
@@ -8,10 +10,10 @@
         {
             Value = val;
         }
-        
-        public void isValid()
+
+        public bool IsValid()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }
