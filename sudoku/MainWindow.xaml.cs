@@ -24,13 +24,6 @@ namespace sudoku
             var composite = new RowComposite(new Cell(4),
                 new Cell(5),
                 new Cell(6));
-
-            var b = composite.GetValues();
-
-            foreach (var i in b)
-            {
-                Debug.WriteLine(i);
-            }
         }
 
         private void ReadFile_Click(object sender, RoutedEventArgs e)
