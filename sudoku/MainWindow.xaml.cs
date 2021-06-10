@@ -2,6 +2,8 @@
 using System.Windows;
 using Microsoft.Win32;
 using sudoku.Builder;
+using sudoku.SudokuBoard;
+using sudoku.Views;
 
 namespace sudoku
 {
@@ -13,6 +15,7 @@ namespace sudoku
         private (string[] content, SudokuType type) _rawSudoku; 
         private readonly SudokuBuilderFactory _factory;
         private ISudokuBuilder _builder;
+        private Board _board;
 
         public MainWindow()
         {
@@ -26,7 +29,8 @@ namespace sudoku
             _builder = _factory.GetBuilder(_rawSudoku.type);
             _builder.SetContent(_rawSudoku.content);
             _builder.BuildSudoku();
-            _builder.GetResult();
+            
+            Content = new SudokuUserControl(_builder.GetResult());
         }
     }
 }
