@@ -10,18 +10,23 @@ namespace sudoku.Views
     public partial class SudokuUserControl : UserControl
     {
         private Board _board;
+
         public SudokuUserControl(Board board)
         {
-            var colors = new List<SolidColorBrush> {Brushes.Brown, Brushes.Aqua, Brushes.Chartreuse, Brushes.Crimson, Brushes.Cyan, Brushes.Chocolate, Brushes.Gold, Brushes.Navy, Brushes.MediumVioletRed};
-            
+            var colors = new List<SolidColorBrush>
+            {
+                Brushes.Brown, Brushes.Aqua, Brushes.Chartreuse, Brushes.Crimson, Brushes.Fuchsia, Brushes.Chocolate,
+                Brushes.Gold, Brushes.CadetBlue, Brushes.Orange
+            };
+
             InitializeComponent();
             _board = board;
             var grid = (Grid) FindName("sudokuGrid");
 
             for (var i = 0; i < _board.Regions.GetCount(); i++)
             {
-                grid?.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(20)});
-                grid?.RowDefinitions.Add(new RowDefinition{Height = new GridLength(20)});
+                grid?.ColumnDefinitions.Add(new ColumnDefinition());
+                grid?.RowDefinitions.Add(new RowDefinition());
                 
                 var curRegion = _board.Regions.Get(i);
 
