@@ -15,13 +15,13 @@ namespace sudoku.Views
         {
             var colors = new List<SolidColorBrush>
             {
-                Brushes.Brown, Brushes.Aqua, Brushes.Chartreuse, Brushes.Crimson, Brushes.Fuchsia, Brushes.Chocolate,
-                Brushes.Gold, Brushes.CadetBlue, Brushes.Orange
+                Brushes.Red, Brushes.Orange, Brushes.Yellow, Brushes.Lime, Brushes.Green, Brushes.Cyan,
+                Brushes.Blue, Brushes.Purple, Brushes.Magenta
             };
 
             InitializeComponent();
             _board = board;
-            var grid = (Grid) FindName("sudokuGrid");
+            var grid = (Grid) FindName("SudokuGrid");
 
             for (var i = 0; i < _board.Regions.GetCount(); i++)
             {
