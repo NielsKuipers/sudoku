@@ -18,12 +18,12 @@ namespace sudoku.Board
         
         public bool IsValid()
         {
-            
+            return true;
         }
 
-        public IEnumerable<int> GetValues()
-        {
-            return _children.Select(child => child.IsValid()).ToList();
-        }
+        // public IEnumerable<int> GetValues()
+        // {
+        //     return _children.Select(child => child.IsValid()).ToList();
+        // }
     }
 }
