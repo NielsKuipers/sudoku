@@ -11,7 +11,7 @@ namespace sudoku.Builder.BuilderType
 
         public override void BuildSudoku()
         {
-            throw new System.NotImplementedException();
+            var sudoku = SudokuParser.ParseSamuraiSudoku(Content); 
         }
     }
 }

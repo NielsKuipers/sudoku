@@ -30,12 +30,11 @@ namespace sudoku.Builder
             if (char.IsNumber(extenstion[0]))
                 extenstion = "_" + extenstion;
 
-            Enum.TryParse(extenstion, out SudokuType parsedExt);
+            Enum.TryParse(extenstion, true, out SudokuType parsedExt);
             
             var content = File.ReadAllLines(path);
-            var sudoku = (content, parsedExt);
 
-            return sudoku;
+            return (content, parsedExt);
         }
     }
 }

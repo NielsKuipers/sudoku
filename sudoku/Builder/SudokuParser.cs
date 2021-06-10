@@ -25,14 +25,35 @@ namespace sudoku.Builder
             return rows;
         }
 
-        public static List<List<int>> ParseSamuraiSudoku(string[] content)
+        public static List<List<List<int>>> ParseSamuraiSudoku(string[] content)
         {
-            throw new NotImplementedException();
+            const int rowSize = 9;
+
+            return content.Select(part => ParseGenericSudoku(part, rowSize)).ToList();
         }
 
-        public static List<List<int>> ParseJigSawSudoku(string content)
+        public static List<List<string>> ParseJigSawSudoku(string content)
         {
-            throw new NotImplementedException();
+            const int rowSize = 9;
+
+            var rows = new List<List<string>>();
+            for (var i = 0; i < rowSize; i++)
+            {
+                rows.Add(new List<string>());
+            }
+            
+            var values = content.Split('=').ToList();
+            values.RemoveAt(0);
+
+            var rowPointer = 0;
+            
+            foreach (var value in values)
+            {
+                rows[rowPointer].Add(value);
+                if (rows[rowPointer].Count == rowSize) rowPointer++;
+            }
+            
+            return rows;
         }
     }
 }
