@@ -11,7 +11,7 @@ namespace sudoku.Builder.BuilderType
 
         public override void BuildSudoku()
         {
-            var sudoku = SudokuParser.ParseSamuraiSudoku(Content); 
+            var sudoku = SudokuParser.ParseSamuraiSudoku(Content);
         }
     }
 }

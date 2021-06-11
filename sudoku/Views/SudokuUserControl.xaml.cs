@@ -3,15 +3,16 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using sudoku.Models;
 using sudoku.SudokuBoard;
 
 namespace sudoku.Views
 {
     public partial class SudokuUserControl : UserControl
     {
-        private Board _board;
+        private Game _game;
 
-        public SudokuUserControl(Board board)
+        public SudokuUserControl(Game game)
         {
             var colors = new List<SolidColorBrush>
             {
@@ -20,15 +21,15 @@ namespace sudoku.Views
             };
 
             InitializeComponent();
-            _board = board;
+            _game = game;
             var grid = (Grid) FindName("SudokuGrid");
 
-            for (var i = 0; i < _board.Regions.GetCount(); i++)
+            for (var i = 0; i < _game.Board.Regions.GetCount(); i++)
             {
                 grid?.ColumnDefinitions.Add(new ColumnDefinition());
                 grid?.RowDefinitions.Add(new RowDefinition());
                 
-                var curRegion = _board.Regions.Get(i);
+                var curRegion = _game.Board.Regions.Get(i);
 
                 for (var j = 0; j < curRegion.GetCount(); j++)
                 {

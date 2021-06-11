@@ -70,6 +70,13 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Models\Game.cs" />
+        <Compile Include="States\CheatInputState.cs" />
+        <Compile Include="States\DraftInputState.cs" />
+        <Compile Include="States\InputStateFactory.cs" />
+        <Compile Include="States\InputState.cs" />
+        <Compile Include="States\IInputStateContext.cs" />
+        <Compile Include="States\NormalInputState.cs" />
         <Compile Include="Views\SudokuUserControl.xaml.cs">
           <DependentUpon>SudokuUserControl.xaml</DependentUpon>
         </Compile>

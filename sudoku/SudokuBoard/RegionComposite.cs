@@ -4,7 +4,7 @@ namespace sudoku.SudokuBoard
 {
     public class RegionComposite : Region
     {
-        protected List<Region> _children = new List<Region>();
+        protected readonly List<Region> _children = new List<Region>();
 
         public override void Add(Region region)
         {

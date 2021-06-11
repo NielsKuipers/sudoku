@@ -2,6 +2,8 @@
 using System.Windows;
 using Microsoft.Win32;
 using sudoku.Builder;
+using sudoku.Models;
+using sudoku.States;
 using sudoku.SudokuBoard;
 using sudoku.Views;
 
@@ -12,25 +14,26 @@ namespace sudoku
     /// </summary>
     public partial class MainWindow
     {
-        private (string[] content, SudokuType type) _rawSudoku; 
-        private readonly SudokuBuilderFactory _factory;
+        private readonly SudokuBuilderFactory _sudokuBuilderfactory;
         private ISudokuBuilder _builder;
-        private Board _board;
+        private Game _game;
 
         public MainWindow()
         {
             InitializeComponent();
-            _factory = new SudokuBuilderFactory();
+            _sudokuBuilderfactory = new SudokuBuilderFactory();
         }
 
         private void ReadFile_Click(object sender, RoutedEventArgs e)
         {
-            _rawSudoku = SudokuReader.ReadFile();
-            _builder = _factory.GetBuilder(_rawSudoku.type);
-            _builder.SetContent(_rawSudoku.content);
-            _builder.BuildSudoku();
+            var (content, parsedExt) = SudokuReader.ReadFile();
             
-            Content = new SudokuUserControl(_builder.GetResult());
+            _builder = _sudokuBuilderfactory.GetBuilder(parsedExt);
+            _builder.SetContent(content);
+            _builder.BuildSudoku();
+            _game = new Game(_builder.GetResult());
+
+            Content = new SudokuUserControl(_game);
         }
     }
 }
