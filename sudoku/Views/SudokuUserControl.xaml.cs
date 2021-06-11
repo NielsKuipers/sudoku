@@ -34,8 +34,11 @@ namespace sudoku.Views
                 for (var j = 0; j < curRegion.GetCount(); j++)
                 {
                     var temp = curRegion.Get(j);
-                    var box = new TextBox {Text = temp.Value.ToString(), Background = colors[i]};
+                    var box = new TextBox { Background = colors[i]};
 
+                    if (temp.Value.ToString() != "0")
+                        box.Text = temp.Value.ToString();
+                    
                     Grid.SetColumn(box, temp.X);
                     Grid.SetRow(box, temp.Y);
 
