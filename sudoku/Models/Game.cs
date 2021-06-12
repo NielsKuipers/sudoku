@@ -28,7 +28,7 @@ namespace sudoku.Models
             _inputState.HandleInput(cell, input, lastSelected, selectedDraft);
         }
 
-        public InputState getInput()
+        public InputState GetInput()
         {
             return _inputState;
         }

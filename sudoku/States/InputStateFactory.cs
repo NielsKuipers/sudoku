@@ -12,7 +12,8 @@ namespace sudoku.States
             {
                 { "normal", new NormalInputState(this) },
                 { "draft", new DraftInputState(this) },
-                { "cheat", new CheatInputState(this) }
+                { "cheat", new CheatInputState(this) },
+                { "solve", new SolveInputState(this) }
             };
         }
 

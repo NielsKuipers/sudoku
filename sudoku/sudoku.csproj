@@ -190,6 +190,7 @@
         <Compile Include="States\InputState.cs" />
         <Compile Include="States\IInputStateContext.cs" />
         <Compile Include="States\NormalInputState.cs" />
+        <Compile Include="States\SolveInputState.cs" />
         <Compile Include="Views\SudokuUserControl.xaml.cs">
           <DependentUpon>SudokuUserControl.xaml</DependentUpon>
         </Compile>

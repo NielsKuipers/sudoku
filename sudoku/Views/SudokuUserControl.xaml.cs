@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using sudoku.Models;
-using sudoku.States;
 using sudoku.SudokuBoard;
 
 namespace sudoku.Views
@@ -145,27 +139,22 @@ namespace sudoku.Views
 
         private void ChangeInputDraft_OnClick(object sender, RoutedEventArgs e)
         {
-            _game.getInput().TransitionTo("draft");
+            _game.GetInput().TransitionTo("draft");
         }
 
         private void ChangeInputNormal_OnClick(object sender, RoutedEventArgs e)
         {
-           _game.getInput().TransitionTo("normal");
+           _game.GetInput().TransitionTo("normal");
         }
 
         private void ChangeInputCheat_OnClick(object sender, RoutedEventArgs e)
         {
-           _game.getInput().TransitionTo("cheat");
-        }
-
-        private void ClearCell_OnClick(object sender, RoutedEventArgs e)
-        {
-            
+           _game.GetInput().TransitionTo("cheat");
         }
         
         private void Solve_OnClick(object sender, RoutedEventArgs e)
         {
-            ChangeInputNormal_OnClick(this, null);
+            _game.GetInput().TransitionTo("solve");
             foreach (var cell in cells)
             {
                 var inputLabel = _sudokuGrid.Children.Cast<Label>().First(el =>
@@ -175,6 +164,7 @@ namespace sudoku.Views
                 
                 _game.HandleInput(cell, cell.Answer, inputLabel, draftLabel);
             }
+            ChangeInputNormal_OnClick(this, null);
         }
     }
 }
