@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="800" Width="1000">
     <Grid>
        <Button x:Name="ReadFile" Content="choose file" Width="100" Height="20" Click="ReadFile_Click"></Button> 

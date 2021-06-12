@@ -13,6 +13,8 @@ namespace sudoku.States
 
         public override void HandleInput(Region cell, int input, Label label, Label selectedDraft)
         {
+            if (cell.Value != 0) return;
+            
             if (cell.DraftNumbers.Contains(input))
                 cell.DraftNumbers.Remove(input);
             else

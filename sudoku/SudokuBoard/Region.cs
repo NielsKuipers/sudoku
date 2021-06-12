@@ -14,6 +14,7 @@ namespace sudoku.SudokuBoard
         public List<int> DraftNumbers { get; set; } = new List<int>();
 
         public Region MyRegion { get; set; }
+        public int Answer { get; set; }
 
         public virtual void Add(Region region)
         {

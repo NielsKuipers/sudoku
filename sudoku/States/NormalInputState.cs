@@ -12,10 +12,17 @@ namespace sudoku.States
         public override void HandleInput(Region cell, int input, Label label, Label selectedDraft)
         {
             cell.DraftNumbers.Clear();
-            cell.Value = input;
             label.Content = "";
-            label.Content = input;
             selectedDraft.Content = "";
+            if (input == cell.Value)
+            {
+                cell.Value = 0;
+            }
+            else
+            {
+                cell.Value = input;
+                label.Content = input;
+            }
         }
     }
 }

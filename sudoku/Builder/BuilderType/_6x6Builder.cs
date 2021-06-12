@@ -1,4 +1,10 @@
-﻿namespace sudoku.Builder.BuilderType
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using sudoku.SudokuBoard;
+
+namespace sudoku.Builder.BuilderType
 {
     public class _6x6Builder : SudokuBuilder
     {
@@ -13,7 +19,36 @@
 
         public override void GenerateAnswer()
         {
-            throw new System.NotImplementedException();
+            var cells = new List<Region>();
+            var rawAnswer = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, @"resources\puzzle.6x6.txt"));
+            var temp = rawAnswer[0];
+
+            var x = 0;
+            var y = 0;
+            
+            for (var i = 0; i < Board.Regions.GetCount(); i++)
+            {
+                var reg = Board.Regions.Get(i);
+                for (var j = 0; j < reg.GetCount(); j++)
+                {
+                    cells.Add(reg.Get(j));
+                }
+            }
+
+            foreach (var cellValue in temp)
+            {
+                if (x == 6)
+                {
+                    x = 0;
+                    y++;
+                }
+                int.TryParse(cellValue.ToString(), out var value);
+                
+                var cell = cells.Find(c => c.X == x && c.Y == y);
+                cell.Answer = value;
+                
+                x++;
+            }
         }
     }
 }

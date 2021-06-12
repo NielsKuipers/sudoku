@@ -50,6 +50,7 @@ namespace sudoku
             _builder = _sudokuBuilderfactory.GetBuilder(parsedExt);
             _builder.SetContent(content);
             _builder.BuildSudoku();
+            _builder.GenerateAnswer();
             _game = new Game(_builder.GetResult(), sudokuSize);
 
             Content = new SudokuUserControl(_game);

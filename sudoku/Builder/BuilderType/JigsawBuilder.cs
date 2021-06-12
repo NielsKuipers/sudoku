@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using sudoku.SudokuBoard;
 
@@ -42,7 +44,37 @@ namespace sudoku.Builder.BuilderType
 
         public override void GenerateAnswer()
         {
-            throw new NotImplementedException();
+            var cells = new List<Region>();
+            var rawAnswer = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, @"resources\puzzle.jigsaw.txt"));
+            var temp = rawAnswer[0].Split('=').ToList();
+            temp.RemoveAt(0);
+
+            var x = 0;
+            var y = 0;
+            
+            for (var i = 0; i < Board.Regions.GetCount(); i++)
+            {
+                var reg = Board.Regions.Get(i);
+                for (var j = 0; j < reg.GetCount(); j++)
+                {
+                    cells.Add(reg.Get(j));
+                }
+            }
+            
+            foreach (var cellInfo in temp.Select(cell => cell.Split('J')))
+            {
+                if (x == 9)
+                {
+                    x = 0;
+                    y++;
+                }
+                int.TryParse(cellInfo[0], out var value);
+                
+                var cell = cells.Find(c => c.X == y && c.Y == x);
+                cell.Answer = value;
+                
+                x++;
+            }
         }
     }
 }

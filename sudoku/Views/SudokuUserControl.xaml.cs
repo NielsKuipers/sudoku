@@ -29,7 +29,7 @@ namespace sudoku.Views
         {
             var colors = new List<SolidColorBrush>
             {
-                Brushes.Red, Brushes.Orange, Brushes.Yellow, Brushes.Lime, Brushes.Green, Brushes.Cyan,
+                Brushes.Pink, Brushes.Orange, Brushes.Yellow, Brushes.Lime, Brushes.Coral, Brushes.Cyan,
                 Brushes.Blue, Brushes.Purple, Brushes.Magenta
             };
 
@@ -160,9 +160,21 @@ namespace sudoku.Views
 
         private void ClearCell_OnClick(object sender, RoutedEventArgs e)
         {
-
+            
         }
-
-
+        
+        private void Solve_OnClick(object sender, RoutedEventArgs e)
+        {
+            ChangeInputNormal_OnClick(this, null);
+            foreach (var cell in cells)
+            {
+                var inputLabel = _sudokuGrid.Children.Cast<Label>().First(el =>
+                    Grid.GetRow(el) == cell.X && Grid.GetColumn(el) == cell.Y);
+                var draftLabel = _sudokuGrid.Children.Cast<Label>().Last(el =>
+                    Grid.GetRow(el) == cell.X && Grid.GetColumn(el) == cell.Y);
+                
+                _game.HandleInput(cell, cell.Answer, inputLabel, draftLabel);
+            }
+        }
     }
 }
