@@ -11,5 +11,10 @@
         {
             BuildGenericSudoku();
         }
+
+        public override void GenerateAnswer()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

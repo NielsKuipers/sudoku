@@ -1,4 +1,5 @@
-﻿using sudoku.SudokuBoard;
+﻿using System.Windows.Controls;
+using sudoku.SudokuBoard;
 
 namespace sudoku.States
 {
@@ -8,7 +9,7 @@ namespace sudoku.States
         {
         }
 
-        public override void HandleInput(Region cell, int input)
+        public override void HandleInput(Region cell, int input, Label label, Label selectedDraft)
         {
             throw new System.NotImplementedException();
         }

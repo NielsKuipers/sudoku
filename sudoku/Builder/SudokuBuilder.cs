@@ -16,6 +16,7 @@ namespace sudoku.Builder
         protected Board Board { get; set; }
 
         public abstract void BuildSudoku();
+        public abstract void GenerateAnswer();
 
         public Board GetResult()
         {

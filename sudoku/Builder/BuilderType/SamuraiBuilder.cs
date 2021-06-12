@@ -13,5 +13,10 @@ namespace sudoku.Builder.BuilderType
         {
             var sudoku = SudokuParser.ParseSamuraiSudoku(Content);
         }
+
+        public override void GenerateAnswer()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

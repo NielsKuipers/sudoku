@@ -39,9 +39,11 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="1" Content="Clear"></Button>
-                <Button Grid.Row="2" Content="Normal" Click="ChangeInput_OnClick"></Button>
-                <Button Grid.Row="3" Content="Solve"></Button>
+                <Button Grid.Row="1" Content="Clear" Click="ClearCell_OnClick"></Button>
+                <Button Grid.Row="2" Content="Normal" Click="ChangeInputNormal_OnClick"></Button>
+                <Button Grid.Row="3" Content="Draft" Click="ChangeInputDraft_OnClick"></Button>
+                <Button Grid.Row="4" Content="Cheat" Click="ChangeInputCheat_OnClick"></Button>
+                <Button Grid.Row="5" Content="Solve"></Button>
             </Grid>
         </Grid>
     </Grid>

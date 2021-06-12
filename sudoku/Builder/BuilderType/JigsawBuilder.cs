@@ -39,6 +39,10 @@ namespace sudoku.Builder.BuilderType
 
             Board = new Board(regions);
         }
-        
+
+        public override void GenerateAnswer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace sudoku.Views
         private Grid _sudokuGrid;
         private Brush _tempColor;
         private Label _lastSelected;
+        private Label _selectedDraft;
 
         public SudokuUserControl(Game game)
         {
@@ -53,10 +54,10 @@ namespace sudoku.Views
                         VerticalContentAlignment = VerticalAlignment.Center,
                         HorizontalContentAlignment = HorizontalAlignment.Center,
                         FontSize = 20,
-                        FontWeight = FontWeights.Bold
+                        FontWeight = FontWeights.Bold,
+                        BorderBrush = Brushes.Black,
+                        BorderThickness = new Thickness(1)
                     };
-                    var numbers = new Binding {Source = temp.Value};
-                    box.SetBinding(ContentProperty, numbers);
 
                     var draftBox = new Label
                     {
@@ -64,11 +65,7 @@ namespace sudoku.Views
                         VerticalContentAlignment = VerticalAlignment.Top,
                         HorizontalContentAlignment = HorizontalAlignment.Center,
                         FontWeight = FontWeights.SemiBold,
-                        Content = "halloooo"
                     };
-
-                    var draftNumbers = new Binding {Source = temp.DraftNumbers};
-                    draftBox.SetBinding(TextBlock.TextProperty, draftNumbers);
 
                     if (temp.Value.ToString() != "0")
                     {
@@ -126,7 +123,10 @@ namespace sudoku.Views
             var selectedCell = (UIElement) e.Source;
             var input = _sudokuGrid.Children.Cast<Label>().First(el =>
                 Grid.GetRow(el) == Grid.GetRow(selectedCell) && Grid.GetColumn(el) == Grid.GetColumn(selectedCell));
+            _selectedDraft = _sudokuGrid.Children.Cast<Label>().Last(el =>
+                Grid.GetRow(el) == Grid.GetRow(selectedCell) && Grid.GetColumn(el) == Grid.GetColumn(selectedCell));
 
+            
             _lastSelected = input;
 
             _tempColor = input.Background;
@@ -140,12 +140,29 @@ namespace sudoku.Views
             var tag = ((Button) sender).Tag.ToString();
             int.TryParse(tag, out var i);
 
-            _game.HandleInput(_selectedCell, i);
+            _game.HandleInput(_selectedCell, i, _lastSelected, _selectedDraft);
         }
 
-        private void ChangeInput_OnClick(object sender, RoutedEventArgs e)
+        private void ChangeInputDraft_OnClick(object sender, RoutedEventArgs e)
         {
             _game.getInput().TransitionTo("draft");
         }
+
+        private void ChangeInputNormal_OnClick(object sender, RoutedEventArgs e)
+        {
+           _game.getInput().TransitionTo("normal"); 
+        }
+        
+        private void ChangeInputCheat_OnClick(object sender, RoutedEventArgs e)
+        {
+           _game.getInput().TransitionTo("cheat"); 
+        }
+
+        private void ClearCell_OnClick(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        
+        
     }
 }

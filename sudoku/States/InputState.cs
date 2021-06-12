@@ -1,4 +1,6 @@
-﻿using sudoku.SudokuBoard;
+﻿using System.Reflection.Emit;
+using sudoku.SudokuBoard;
+using Label = System.Windows.Controls.Label;
 
 namespace sudoku.States
 {
@@ -22,6 +24,6 @@ namespace sudoku.States
             InputStateContext.SetInputState(_inputStateFactory.GetState(key));
         }
 
-        public abstract void HandleInput(Region cell, int input);
+        public abstract void HandleInput(Region cell, int input, Label label, Label selectedDraft);
     }
 }

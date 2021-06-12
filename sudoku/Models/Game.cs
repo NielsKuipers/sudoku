@@ -1,4 +1,5 @@
-﻿using sudoku.States;
+﻿using System.Windows.Controls;
+using sudoku.States;
 using sudoku.SudokuBoard;
 
 namespace sudoku.Models
@@ -15,21 +16,22 @@ namespace sudoku.Models
             Board = board;
             SudokuSize = sudokuSize;
         }
-        
+
         public void SetInputState(InputState inputState)
         {
             _inputState = inputState;
             _inputState.SetContext(this);
         }
 
-        public void HandleInput(Region cell, int input)
+        public void HandleInput(Region cell, int input, Label lastSelected, Label selectedDraft)
         {
-            _inputState.HandleInput(cell, input);
+            _inputState.HandleInput(cell, input, lastSelected, selectedDraft);
         }
 
         public InputState getInput()
         {
             return _inputState;
         }
+
     }
 }
