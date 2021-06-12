@@ -63,12 +63,11 @@ namespace sudoku.Views
                         Background = Brushes.Transparent,
                         VerticalContentAlignment = VerticalAlignment.Top,
                         HorizontalContentAlignment = HorizontalAlignment.Center,
-                        FontWeight = FontWeights.SemiBold,
-                        Content = "halloooo"
+                        FontWeight = FontWeights.SemiBold
                     };
 
                     var draftNumbers = new Binding {Source = temp.DraftNumbers};
-                    draftBox.SetBinding(TextBlock.TextProperty, draftNumbers);
+                    draftBox.SetBinding(ContentProperty, draftNumbers);
 
                     if (temp.Value.ToString() != "0")
                     {
