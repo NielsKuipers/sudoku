@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace sudoku.SudokuBoard
 {
@@ -9,6 +10,8 @@ namespace sudoku.SudokuBoard
         public int Y { get; set; }
 
         public int Value { get; set; }
+
+        public List<int> DraftNumbers { get; set; } = new List<int>();
 
         public Region MyRegion { get; set; }
 

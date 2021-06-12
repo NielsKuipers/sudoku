@@ -10,6 +10,7 @@ namespace sudoku.States
 
         public override void HandleInput(Region cell, int input)
         {
+            cell.DraftNumbers.Clear();
             cell.Value = input;
         }
     }

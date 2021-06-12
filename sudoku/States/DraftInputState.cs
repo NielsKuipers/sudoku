@@ -10,7 +10,10 @@ namespace sudoku.States
 
         public override void HandleInput(Region cell, int input)
         {
-            throw new System.NotImplementedException();
+            if (cell.DraftNumbers.Contains(input))
+                cell.DraftNumbers.Remove(input);
+            else
+                cell.DraftNumbers.Add(input);
         }
     }
 }

@@ -26,5 +26,10 @@ namespace sudoku.Models
         {
             _inputState.HandleInput(cell, input);
         }
+
+        public InputState getInput()
+        {
+            return _inputState;
+        }
     }
 }
