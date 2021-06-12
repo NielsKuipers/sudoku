@@ -7,17 +7,24 @@ namespace sudoku.Models
     {
         private InputState _inputState;
         public Board Board { get; }
+        public int SudokuSize { get; }
 
-        public Game(Board board)
+        public Game(Board board, int sudokuSize)
         {
             SetInputState(new NormalInputState(new InputStateFactory()));
             Board = board;
+            SudokuSize = sudokuSize;
         }
         
         public void SetInputState(InputState inputState)
         {
             _inputState = inputState;
             _inputState.SetContext(this);
+        }
+
+        public void HandleInput(Region cell, int input)
+        {
+            _inputState.HandleInput(cell, input);
         }
     }
 }

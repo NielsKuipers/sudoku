@@ -1,4 +1,6 @@
-﻿namespace sudoku.States
+﻿using sudoku.SudokuBoard;
+
+namespace sudoku.States
 {
     public class DraftInputState : InputState
     {
@@ -6,7 +8,7 @@
         {
         }
 
-        public override void HandleInput()
+        public override void HandleInput(Region cell, int input)
         {
             throw new System.NotImplementedException();
         }

@@ -1,4 +1,6 @@
-﻿namespace sudoku.States
+﻿using sudoku.SudokuBoard;
+
+namespace sudoku.States
 {
     public abstract class InputState
     {
@@ -20,6 +22,6 @@
             InputStateContext.SetInputState(_inputStateFactory.GetState(key));
         }
 
-        public abstract void HandleInput();
+        public abstract void HandleInput(Region cell, int input);
     }
 }
