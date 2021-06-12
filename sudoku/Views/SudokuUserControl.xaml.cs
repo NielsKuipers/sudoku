@@ -126,7 +126,7 @@ namespace sudoku.Views
             _selectedDraft = _sudokuGrid.Children.Cast<Label>().Last(el =>
                 Grid.GetRow(el) == Grid.GetRow(selectedCell) && Grid.GetColumn(el) == Grid.GetColumn(selectedCell));
 
-            
+
             _lastSelected = input;
 
             _tempColor = input.Background;
@@ -150,19 +150,19 @@ namespace sudoku.Views
 
         private void ChangeInputNormal_OnClick(object sender, RoutedEventArgs e)
         {
-           _game.getInput().TransitionTo("normal"); 
+           _game.getInput().TransitionTo("normal");
         }
-        
+
         private void ChangeInputCheat_OnClick(object sender, RoutedEventArgs e)
         {
-           _game.getInput().TransitionTo("cheat"); 
+           _game.getInput().TransitionTo("cheat");
         }
 
         private void ClearCell_OnClick(object sender, RoutedEventArgs e)
         {
-           
+
         }
-        
-        
+
+
     }
 }
