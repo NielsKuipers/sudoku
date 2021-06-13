@@ -11,7 +11,7 @@ namespace sudoku.SudokuBoard
 
         public int Value { get; set; }
 
-        public List<int> DraftNumbers { get; set; } = new List<int>();
+        public List<int> DraftNumbers { get; set; }
 
         public Region MyRegion { get; set; }
         public int Answer { get; set; }
@@ -22,6 +22,11 @@ namespace sudoku.SudokuBoard
         }
 
         public virtual void Remove(Region region)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void RemoveAt(int pos)
         {
             throw new NotImplementedException();
         }

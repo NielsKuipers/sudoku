@@ -44,7 +44,7 @@ namespace sudoku.Builder.BuilderType
                 }
                 int.TryParse(cellValue.ToString(), out var value);
                 
-                var cell = cells.Find(c => c.X == x && c.Y == y);
+                var cell = cells.Find(c => c.X == y && c.Y == x);
                 cell.Answer = value;
                 
                 x++;
