@@ -16,6 +16,11 @@ namespace sudoku.SudokuBoard
             _children.Remove(region);
         }
 
+        public override void RemoveAt(int pos)
+        {
+            _children.RemoveAt(pos);
+        }
+
         public override Region Get(int childNumber)
         {
             return _children[childNumber];

@@ -11,72 +11,24 @@ namespace sudoku.Views
 {
     public partial class SudokuUserControl : UserControl
     {
-        private Game _game;
-        List<Region> cells = new List<Region>();
+        private readonly Game _game;
+        private readonly List<Region> _cells = new List<Region>();
         private Region _selectedCell;
-        private Grid _sudokuGrid;
+        private readonly Grid _sudokuGrid;
         private Brush _tempColor;
         private Label _lastSelected;
         private Label _selectedDraft;
 
         public SudokuUserControl(Game game)
         {
-            var colors = new List<SolidColorBrush>
-            {
-                Brushes.Pink, Brushes.Orange, Brushes.Yellow, Brushes.Lime, Brushes.Coral, Brushes.Cyan,
-                Brushes.Blue, Brushes.Purple, Brushes.Magenta
-            };
-
             InitializeComponent();
+            
             _game = game;
-            GenerateButtons();
             _sudokuGrid = (Grid) FindName("SudokuGrid");
-
-            for (var i = 0; i < _game.Board.Regions.GetCount(); i++)
-            {
-                _sudokuGrid?.ColumnDefinitions.Add(new ColumnDefinition());
-                _sudokuGrid?.RowDefinitions.Add(new RowDefinition());
-
-                var curRegion = _game.Board.Regions.Get(i);
-
-                for (var j = 0; j < curRegion.GetCount(); j++)
-                {
-                    var temp = curRegion.Get(j);
-                    var box = new Label
-                    {
-                        Background = colors[i],
-                        VerticalContentAlignment = VerticalAlignment.Center,
-                        HorizontalContentAlignment = HorizontalAlignment.Center,
-                        FontSize = 20,
-                        FontWeight = FontWeights.Bold,
-                        BorderBrush = Brushes.Black,
-                        BorderThickness = new Thickness(1)
-                    };
-
-                    var draftBox = new Label
-                    {
-                        Background = Brushes.Transparent,
-                        VerticalContentAlignment = VerticalAlignment.Top,
-                        HorizontalContentAlignment = HorizontalAlignment.Center,
-                        FontWeight = FontWeights.SemiBold,
-                    };
-
-                    if (temp.Value.ToString() != "0")
-                    {
-                        box.Content = temp.Value.ToString();
-                    }
-
-                    cells.Add(temp);
-
-                    Grid.SetColumn(box, temp.X);
-                    Grid.SetRow(box, temp.Y);
-                    Grid.SetColumn(draftBox, temp.X);
-                    Grid.SetRow(draftBox, temp.Y);
-
-                    _sudokuGrid?.Children.Add(box);
-                    _sudokuGrid?.Children.Add(draftBox);
-                }
-            }
+            
+            SetupList();
+            GenerateButtons();
+            SetupBoard();
         }
 
         private void GenerateButtons()
@@ -109,6 +61,59 @@ namespace sudoku.Views
             }
         }
 
+        private void SetupBoard()
+        {
+            var colors = new List<SolidColorBrush>
+            {
+                Brushes.Pink, Brushes.Orange, Brushes.Yellow, Brushes.Lime, Brushes.Coral, Brushes.Cyan,
+                Brushes.Blue, Brushes.Purple, Brushes.Magenta
+            };
+
+            for (var i = 0; i <= GetLargestX(); i++) _sudokuGrid?.ColumnDefinitions.Add(new ColumnDefinition());
+            for (var i = 0; i <= GetLargestY(); i++) _sudokuGrid?.RowDefinitions.Add(new RowDefinition());
+
+            for (var i = 0; i < _game.Board.Regions.GetCount(); i++)
+            {
+                var curRegion = _game.Board.Regions.Get(i);
+
+                for (var j = 0; j < curRegion.GetCount(); j++)
+                {
+                    var temp = curRegion.Get(j);
+                    var box = new Label
+                    {
+                        Background = colors[i % 9],
+                        VerticalContentAlignment = VerticalAlignment.Center,
+                        HorizontalContentAlignment = HorizontalAlignment.Center,
+                        FontSize = 20,
+                        FontWeight = FontWeights.Bold,
+                        BorderBrush = Brushes.Black,
+                        BorderThickness = new Thickness(1)
+                    };
+
+                    var draftBox = new Label
+                    {
+                        Background = Brushes.Transparent,
+                        VerticalContentAlignment = VerticalAlignment.Top,
+                        HorizontalContentAlignment = HorizontalAlignment.Center,
+                        FontWeight = FontWeights.SemiBold,
+                    };
+
+                    if (temp.Value.ToString() != "0")
+                    {
+                        box.Content = temp.Value.ToString();
+                    }
+
+                    Grid.SetColumn(box, temp.X);
+                    Grid.SetRow(box, temp.Y);
+                    Grid.SetColumn(draftBox, temp.X);
+                    Grid.SetRow(draftBox, temp.Y);
+
+                    _sudokuGrid?.Children.Add(box);
+                    _sudokuGrid?.Children.Add(draftBox);
+                }
+            }
+        }
+
         private void SudokuGrid_OnMouseDown(object sender, MouseEventArgs e)
         {
             if (_lastSelected != null)
@@ -126,11 +131,12 @@ namespace sudoku.Views
             _tempColor = input.Background;
             input.Background = Brushes.LightGray;
 
-            _selectedCell = cells.Find(c => c.X == Grid.GetColumn(selectedCell) && c.Y == Grid.GetRow(selectedCell));
+            _selectedCell = _cells.Find(c => c.X == Grid.GetColumn(selectedCell) && c.Y == Grid.GetRow(selectedCell));
         }
 
         private void NumberButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (_selectedCell == null) return;
             var tag = ((Button) sender).Tag.ToString();
             int.TryParse(tag, out var i);
 
@@ -155,7 +161,7 @@ namespace sudoku.Views
         private void Solve_OnClick(object sender, RoutedEventArgs e)
         {
             _game.GetInput().TransitionTo("solve");
-            foreach (var cell in cells)
+            foreach (var cell in _cells)
             {
                 var inputLabel = _sudokuGrid.Children.Cast<Label>().First(el =>
                     Grid.GetRow(el) == cell.X && Grid.GetColumn(el) == cell.Y);
@@ -165,6 +171,28 @@ namespace sudoku.Views
                 _game.HandleInput(cell, cell.Answer, inputLabel, draftLabel);
             }
             ChangeInputNormal_OnClick(this, null);
+        }
+
+        private void SetupList()
+        {
+            for (var i = 0; i < _game.Board.Regions.GetCount(); i++)
+            {
+                var region = _game.Board.Regions.Get(i);
+                for (var j = 0; j < region.GetCount(); j++)
+                {
+                    _cells.Add(region.Get(j));
+                }
+            }
+        }
+
+        private int GetLargestX()
+        {
+            return _cells.Max(c => c.X);
+        }
+
+        private int GetLargestY()
+        {
+            return _cells.Max(c => c.Y);
         }
     }
 }
