@@ -10,6 +10,7 @@ namespace sudoku.Builder
     {
         public static (string[] content, SudokuType parsedExt) ReadFile()
         {
+            const string defaultSudoku = "_4x4";
             var filter = "sudoku files |";
             foreach (var e in Enum.GetValues(typeof(SudokuType)))
             {
@@ -31,6 +32,8 @@ namespace sudoku.Builder
                 extenstion = "_" + extenstion;
 
             Enum.TryParse(extenstion, true, out SudokuType parsedExt);
+
+            if (parsedExt == 0 && extenstion != defaultSudoku) throw new InvalidSudokuFileException();
             
             var content = File.ReadAllLines(path);
 
