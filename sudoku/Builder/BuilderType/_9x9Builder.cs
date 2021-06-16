@@ -43,7 +43,7 @@ namespace sudoku.Builder.BuilderType
             
             foreach (var cell in cells)
             {
-                cell.Answer = grid[cell.Y, cell.X];
+                cell.Answer = grid[cell.X, cell.Y];
             }
         }
     }

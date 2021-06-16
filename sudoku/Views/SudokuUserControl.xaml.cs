@@ -164,9 +164,9 @@ namespace sudoku.Views
             foreach (var cell in _cells)
             {
                 var inputLabel = _sudokuGrid.Children.Cast<Label>().First(el =>
-                    Grid.GetRow(el) == cell.X && Grid.GetColumn(el) == cell.Y);
+                    Grid.GetRow(el) == cell.Y && Grid.GetColumn(el) == cell.X);
                 var draftLabel = _sudokuGrid.Children.Cast<Label>().Last(el =>
-                    Grid.GetRow(el) == cell.X && Grid.GetColumn(el) == cell.Y);
+                    Grid.GetRow(el) == cell.Y && Grid.GetColumn(el) == cell.X);
                 
                 _game.HandleInput(cell, cell.Answer, inputLabel, draftLabel);
             }

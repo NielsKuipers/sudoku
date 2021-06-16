@@ -89,7 +89,7 @@ namespace sudoku.Builder.BuilderType
                 for (var j = 0; j < row.Length; j++)
                 {
                     int.TryParse(row[j].ToString(), out var value);
-                    answer[i, j] = value;
+                    answer[j, i] = value;
                 }
             }
 

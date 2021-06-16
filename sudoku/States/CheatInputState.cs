@@ -21,14 +21,7 @@ namespace sudoku.States
                 return;
             }
             
-            if (input == cell.Answer)
-            {
-                label.Background = Brushes.Green;
-            }
-            else
-            {
-                label.Background = Brushes.Red;
-            }
+            label.Background = input == cell.Answer ? Brushes.Green : Brushes.Red;
             cell.Value = input;
             label.Content = input;
         }

@@ -70,7 +70,7 @@ namespace sudoku.Builder.BuilderType
                 }
                 int.TryParse(cellInfo[0], out var value);
                 
-                var cell = cells.Find(c => c.X == y && c.Y == x);
+                var cell = cells.Find(c => c.X == x && c.Y == y);
                 cell.Answer = value;
                 
                 x++;
