@@ -1,7 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
 using Microsoft.Win32;
 using sudoku.Builder;
+using sudoku.Models;
+using sudoku.States;
+using sudoku.SudokuBoard;
+using sudoku.Views;
 
 namespace sudoku
 {
@@ -10,23 +15,45 @@ namespace sudoku
     /// </summary>
     public partial class MainWindow
     {
-        private (string[] content, SudokuType type) _rawSudoku; 
-        private readonly SudokuBuilderFactory _factory;
+        private readonly SudokuBuilderFactory _sudokuBuilderfactory;
         private ISudokuBuilder _builder;
+        private Game _game;
 
         public MainWindow()
         {
             InitializeComponent();
-            _factory = new SudokuBuilderFactory();
+            _sudokuBuilderfactory = new SudokuBuilderFactory();
         }
 
         private void ReadFile_Click(object sender, RoutedEventArgs e)
         {
-            _rawSudoku = SudokuReader.ReadFile();
-            _builder = _factory.GetBuilder(_rawSudoku.type);
-            _builder.SetContent(_rawSudoku.content);
+            var (content, parsedExt) = SudokuReader.ReadFile();
+            var sudokuSize = 0;
+
+            switch (parsedExt)
+            {
+                case SudokuType._4x4:
+                    sudokuSize = 4;
+                    break;
+                case SudokuType._6x6:
+                    sudokuSize = 6;
+                    break;
+                case SudokuType._9x9:
+                case SudokuType.Samurai:
+                case SudokuType.Jigsaw:
+                    sudokuSize = 9;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            _builder = _sudokuBuilderfactory.GetBuilder(parsedExt);
+            _builder.SetContent(content);
             _builder.BuildSudoku();
-            _builder.GetResult();
+            _builder.GenerateAnswer();
+            _game = new Game(_builder.GetResult(), sudokuSize);
+
+            Content = new SudokuUserControl(_game);
         }
     }
 }

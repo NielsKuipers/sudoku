@@ -4,7 +4,7 @@ namespace sudoku.SudokuBoard
 {
     public class RegionComposite : Region
     {
-        protected List<Region> _children = new List<Region>();
+        protected readonly List<Region> _children = new List<Region>();
 
         public override void Add(Region region)
         {
@@ -14,6 +14,11 @@ namespace sudoku.SudokuBoard
         public override void Remove(Region region)
         {
             _children.Remove(region);
+        }
+
+        public override void RemoveAt(int pos)
+        {
+            _children.RemoveAt(pos);
         }
 
         public override Region Get(int childNumber)

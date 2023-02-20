@@ -1,4 +1,6 @@
-﻿namespace sudoku.SudokuBoard
+﻿using System.Collections.Generic;
+
+namespace sudoku.SudokuBoard
 {
     public sealed class Cell : Region
     {
@@ -8,6 +10,7 @@
             Y = y;
             Value = value;
             MyRegion = region;
+            DraftNumbers = new List<int>();
         }
     }
 }
