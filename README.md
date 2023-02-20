@@ -1,2 +1,2 @@
 # sudoku
-Sudoku DP1
+Sudoku app built in C# using multiple design patterns 
